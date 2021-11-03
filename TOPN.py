@@ -23,7 +23,7 @@ class TopN:
                 data[t] = data[self.parent(t)]
                 data[self.parent(t)] = temp
                 t = self.parent(t)
-        print(data)
+        # print(data)
  
     # 调整data[i]
     def adjust(self, i, n, data):
@@ -50,6 +50,7 @@ class TopN:
                 data[t] = data[self.left(t)]
                 data[self.left(t)] = temp
                 t = self.left(t)
+        # print(data)
  
     # 寻找topN，调整data，将topN排到最前面
     def findTopN(self, n, data):
@@ -58,6 +59,7 @@ class TopN:
         # n往后的数进行调整
         for i in range(n, len(data)):
             self.adjust(i, n, data)
+        # print(data)
         return data[:n]
  
 if __name__ == "__main__":
@@ -68,13 +70,13 @@ if __name__ == "__main__":
     result = topn.findTopN(5, arr1)
     print("数组进行Top-N调整：" + str(result))
  
-    # 第二组测试 随机100个
+    # 第二组测试 随机100000000个
 
     tempList = []
-    for i in range(100):
-        temp = random.randint(0, 1000)
+    for i in range(10000000):
+        temp = random.randint(0, 100000000)
         tempList.append(temp)
-    print("原数组：" + str(tempList))
+    # print("原数组：" + str(tempList))
     topn = TopN()
     result = topn.findTopN(10, tempList)
     print("数组进行Top-N调整：" + str(result))
